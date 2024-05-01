@@ -15,7 +15,6 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "Kernel_Util.h"
 #include "gdt/GDT.h"
 #include "interrupts/IDT.h"
 #include "interrupts/Interrupts.h"
@@ -77,7 +76,6 @@ void PrepareACPI(BootInfo* bootInfo){
     PCI::EnumeratePCI(mcfg);
 }
 
-
 void KernelLogo(BootInfo* bootInfo)
 {
 
@@ -122,10 +120,10 @@ void KernelLogo(BootInfo* bootInfo)
 	CURSOR_SINGLE;
 
 	// DSYFX Implementation
-	int (VERIFIER)(bootInfo->dsyfx); // Set integer value of verifier to the value passed by the booloader
-	_DSYFX(VERIFIER);
+	int (_DSYFX_CHALLENGE_INPUT)(bootInfo->dsyfx); // Set integer value of _DSYFX_CHALLENGE_INPUT to the value passed by the bootloader
+	_DSYFX(_DSYFX_CHALLENGE_INPUT);
 
-	int (VALID_INVALID)(_DSYFX(VERIFIER));
+	int (VALID_INVALID)(_DSYFX(_DSYFX_CHALLENGE_INPUT));
 	_DSYFX_BOOT_CHECK(VALID_INVALID);
 
 	CURSOR_SINGLE;

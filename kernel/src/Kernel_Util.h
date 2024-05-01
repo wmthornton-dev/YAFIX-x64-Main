@@ -60,5 +60,4 @@ struct KernelInfo {
     PageTableManager* pageTableManager;
 };
 
-
 KernelInfo InitializeKernel(BootInfo* BootInfo);

@@ -308,12 +308,12 @@ EFI_STATUS efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable) {
     	int _BOOTLOADER_RETURN_VALUE;
 
     	// Can be any arbitrary value set by the developer so long as that number is not easily guessed.
-    	_BOOTLOADER_RETURN_VALUE = 0xB9BAD3;
+    	_BOOTLOADER_RETURN_VALUE = 0x6EA811; // Deanna's birthday in hex format. 
 		
     	return _BOOTLOADER_RETURN_VALUE;
 	}
 
-	Print(L"Returned Magic Value.\n\r");
+	// Print(L"Returned Magic Value.\n\r");
 
 	// Begin the process of booting the kernel
 	void (*KernelStart)(BootInfo*) = ((__attribute__((sysv_abi)) void (*)(BootInfo*) )header.e_entry);
@@ -326,6 +326,8 @@ EFI_STATUS efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable) {
 	bootInfo.mMapDescSize = DescriptorSize;
 	bootInfo.rsdp = rsdp;
 	bootInfo.dsyfx = _BOOTLOADER(); // Return DSYFX Magic Value to kernel using BootInfo struct. This passes the magic value to the kernel for use by DSYFX functions.
+
+	Print(L"Returned Magic Value.\n\r");
 
 	SystemTable->BootServices->ExitBootServices(ImageHandle, MapKey);
 
