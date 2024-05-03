@@ -308,8 +308,8 @@ EFI_STATUS efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable) {
     	int _BOOTLOADER_RETURN_VALUE;
 
     	// Can be any arbitrary value set by the developer so long as that number is not easily guessed.
-    	_BOOTLOADER_RETURN_VALUE = 0x6EA811; // Deanna's birthday in hex format. 
-		
+    	_BOOTLOADER_RETURN_VALUE = 0xB9BAD3;
+
     	return _BOOTLOADER_RETURN_VALUE;
 	}
 

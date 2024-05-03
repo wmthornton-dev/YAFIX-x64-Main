@@ -36,6 +36,7 @@ extern "C" void _YAFIX(BootInfo* bootInfo){
 	GlobalRenderer->Print("Kernel Initialized Successfully. Awaiting Instructions.");
 	CURSOR_DOUBLE;
 	GlobalRenderer->Print("YAFIX #: ");
+
 	
 	// We can't return from this function or kernel panic ensues. Should be obvious, but
 	// given the different levels of developer skillsets, we include the comment for clarity.
