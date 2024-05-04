@@ -17,25 +17,27 @@
 
 #include "Kernel_Util.h"
 #include "memory/Heap.h"
-#include "scheduling/PIT.h"
-
 
 // We use extern "C" to tell the file that it is being called from an external C program file. _YAFIX is used as the entry point for the program and defined in kernel.ld
 extern "C" void _YAFIX(BootInfo* bootInfo){
 
 	KernelInfo kernelInfo = InitializeKernel(bootInfo);
 	PageTableManager* pageTableManager = kernelInfo.pageTableManager;
-
+	
 	// We are using GlobalRenderer to output all text from the kernel.
-
+	
 	// Console output must be directed to begin after the kernelLogo function output.
 	// We use GlobalRenderer->CursorPosition.Y + 32 to provide a space between the
 	// previous output and new output.
 	CURSOR_DOUBLE;
+	GlobalRenderer->Print("Kernel Initialized Successfully. Loading YaSH...");
+	
+	PIT::Sleepd(30);
+	YaSH_Initialize();
 
-	GlobalRenderer->Print("Kernel Initialized Successfully. Awaiting Instructions.");
-	CURSOR_DOUBLE;
-	GlobalRenderer->Print("YAFIX #: ");
+	// GlobalRenderer->Print("Kernel Initialized Successfully. Awaiting Instructions.");
+	// CURSOR_DOUBLE;
+	// GlobalRenderer->Print("YAFIX #: ");
 
 	
 	// We can't return from this function or kernel panic ensues. Should be obvious, but

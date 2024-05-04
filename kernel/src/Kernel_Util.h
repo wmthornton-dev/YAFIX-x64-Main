@@ -30,6 +30,9 @@
 #include "userinput/Mouse.h"
 #include "ACPI.h"
 #include "PCI.h"
+#include "scheduling/PIT.h"
+
+#include "command/YaSH.h"
 
 // Kernel information strings. Change as necessary for your system.
 #define VERSION "YAFIX Kernel Release 0.0.3a Version Generic_12292021-01_i386_amd64 (64-bit)"
