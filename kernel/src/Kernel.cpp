@@ -30,10 +30,10 @@ extern "C" void _YAFIX(BootInfo* bootInfo){
 	// We use GlobalRenderer->CursorPosition.Y + 32 to provide a space between the
 	// previous output and new output.
 	CURSOR_DOUBLE;
-	GlobalRenderer->Print("Kernel Initialized Successfully. Loading YaSH...");
+	GlobalRenderer->Print("Kernel Initialized Successfully. Loading YafSH...");
 	
 	PIT::Sleepd(30);
-	YaSH_Initialize();
+	YafSH_Initialize();
 
 	// GlobalRenderer->Print("Kernel Initialized Successfully. Awaiting Instructions.");
 	// CURSOR_DOUBLE;
