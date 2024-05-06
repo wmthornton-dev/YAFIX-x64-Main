@@ -21,12 +21,9 @@ void YafSH_Initialize() {
 
 void YafSH_Prompt() {
     GlobalRenderer->Print("YAFIX #: ");
-    
+
     while(true) {
-        //if (HandleKeyboard(Enter)) {
-        //    YASH_CLEAR_SCREEN;
-        //    YASH_CURSOR_DEFAULT;
-        //    YaSH_Prompt();
-        //}
-    }
+        
+        }
+
 }

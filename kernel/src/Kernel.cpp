@@ -31,15 +31,14 @@ extern "C" void _YAFIX(BootInfo* bootInfo){
 	// previous output and new output.
 	CURSOR_DOUBLE;
 	GlobalRenderer->Print("Kernel Initialized Successfully. Loading YafSH...");
+
+	// This is where we appear to leave kernel space and enter user space. Not truly entering user space as interaction is directly with the kernel itself, but it allows us to
+	// give the appearance of such for the time being. Eventually we will truly implement user space and kernel space. We are sleeping for 30 seconds to allow the user to see the
+	// primary kernel output from the boot sequence prior to loading the YafSH command interpreter.
 	
 	PIT::Sleepd(30);
 	YafSH_Initialize();
 
-	// GlobalRenderer->Print("Kernel Initialized Successfully. Awaiting Instructions.");
-	// CURSOR_DOUBLE;
-	// GlobalRenderer->Print("YAFIX #: ");
-
-	
 	// We can't return from this function or kernel panic ensues. Should be obvious, but
 	// given the different levels of developer skillsets, we include the comment for clarity.
     while(true){
