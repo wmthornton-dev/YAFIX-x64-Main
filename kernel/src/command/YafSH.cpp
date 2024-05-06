@@ -19,11 +19,12 @@ void YafSH_Initialize() {
     
 }
 
+
 void YafSH_Prompt() {
     GlobalRenderer->Print("YAFIX #: ");
 
     while(true) {
-        
+            
         }
 
 }
