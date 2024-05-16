@@ -18,6 +18,7 @@
 #include <efi.h> // These files are contained in other build folders and compile correctly.
 #include <efilib.h>
 #include <elf.h>
+#include "bootloader.h"
 
 // Magic numbers to determine valid PSF font format
 #define PSF1_MAGIC0 0x36
@@ -26,7 +27,7 @@
 
 // Bootloader information strings. Change as necessary for your system.
 #define VERSION "YAFIX Bootloader Release 0.0.3a Version Generic_12292021-01_i386_amd64 (64-Bit) \n\r"
-#define COPYRIGHT_STRING "Copyright 2020 - 2022 Wayne Michael Thornton. All rights reserved. \n\r"
+#define COPYRIGHT_STRING "Copyright 2020 - 2024 Wayne Michael Thornton. All rights reserved. \n\r"
 #define DEVELOPER_INFO "Developed by Wayne Michael Thornton (wmthornton). \n\r"
 #define LICENSE_INFO "Use is subject to license terms. \n\r"
 #define VERSION_UNFORMATTED "003"
@@ -179,12 +180,12 @@ EFI_STATUS efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable) {
 	//Print(L(DEVELOPER_INFO));
 	//Print(L(LICENSE_INFO));
 	Print(L"YAFIX Bootloader Release 0.0.3a Version Generic_12292021-01_i386_amd64 \n\r");
-	Print(L"Copyright 2020 - 2022 Wayne Michael Thornton. All rights reserved.\n\r");
+	Print(L"Copyright 2020 - 2024 Wayne Michael Thornton. All rights reserved.\n\r");
 	Print(L"Developed by Wayne Michael Thornton (wmthornton).\n\r");
 	Print(L"Use is subject to license terms.\n\r");
 	Print(L" \n\r");
 
-	EFI_FILE* Kernel = loadFile(NULL, L"kernel.elf", ImageHandle, SystemTable);
+	EFI_FILE* Kernel = loadFile(NULL, L"BootYFX64.elf", ImageHandle, SystemTable);
 	if ( Kernel == NULL){
 		Print(L"Error locating kernel within filesystem.\n\r");
 		Print(L"FATAL ERROR: 0xB9BAD3\n\r"); // Rachel's birthday
@@ -304,14 +305,14 @@ EFI_STATUS efi_main (EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable) {
 	Print(L"Returning Magic Value to kernel...\n\r");
 	
 	// DSYFX Magic Number function. Placed here just for readability. Function is not called until BootInfo struct is passed to kernel later on.
-	int _BOOTLOADER() {
-    	int _BOOTLOADER_RETURN_VALUE;
+	//int _BOOTLOADER() {
+    //	int _BOOTLOADER_RETURN_VALUE;
 
     	// Can be any arbitrary value set by the developer so long as that number is not easily guessed.
-    	_BOOTLOADER_RETURN_VALUE = 0xB9BAD3;
+    //	_BOOTLOADER_RETURN_VALUE = 0xB9BAD3;
 
-    	return _BOOTLOADER_RETURN_VALUE;
-	}
+    //	return _BOOTLOADER_RETURN_VALUE;
+	//}
 
 	// Print(L"Returned Magic Value.\n\r");
 

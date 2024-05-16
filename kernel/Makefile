@@ -60,7 +60,7 @@ $(OBJDIR)/%_asm.o: $(SRCDIR)/%.asm
 
 link:
 	@echo !==== LINKING $^
-	$(LD) $(LDFLAGS) -o $(BUILDDIR)/kernel.elf $(OBJS)
+	$(LD) $(LDFLAGS) -o $(BUILDDIR)/BootYFX64.elf $(OBJS)
 
 setup:
 	@mkdir $(BUILDDIR)
@@ -77,7 +77,7 @@ buildimg:
 	mmd -i $(BUILDDIR)/$(OSNAME).img ::/EFI/BOOT
 	mcopy -i $(BUILDDIR)/$(OSNAME).img $(BOOTEFI) ::/EFI/BOOT
 	mcopy -i $(BUILDDIR)/$(OSNAME).img startup.nsh ::
-	mcopy -i $(BUILDDIR)/$(OSNAME).img $(BUILDDIR)/kernel.elf ::
+	mcopy -i $(BUILDDIR)/$(OSNAME).img $(BUILDDIR)/BootYFX64.elf ::
 	mcopy -i $(BUILDDIR)/$(OSNAME).img $(BUILDDIR)/zap-light16.psf ::
 	mcopy -i $(BUILDDIR)/$(OSNAME).img $(BUILDDIR)/zap-ext-light16.psf ::
 
@@ -88,7 +88,7 @@ buildiso:
 	mmd -i $(BUILDDIR)/$(OSNAME).iso ::/EFI/BOOT
 	mcopy -i $(BUILDDIR)/$(OSNAME).iso $(BOOTEFI) ::/EFI/BOOT
 	mcopy -i $(BUILDDIR)/$(OSNAME).iso startup.nsh ::
-	mcopy -i $(BUILDDIR)/$(OSNAME).iso $(BUILDDIR)/kernel.elf ::
+	mcopy -i $(BUILDDIR)/$(OSNAME).iso $(BUILDDIR)/BootYFX64.elf ::
 	mcopy -i $(BUILDDIR)/$(OSNAME).iso $(BUILDDIR)/zap-light16.psf ::
 	mcopy -i $(BUILDDIR)/$(OSNAME).iso $(BUILDDIR)/zap-ext-light16.psf ::
 
