@@ -72,7 +72,7 @@ clean:
 
 buildimg:
 	dd if=/dev/zero of=$(BUILDDIR)/$(OSNAME).img bs=512 count=93750
-	mformat -i $(BUILDDIR)/$(OSNAME).img -f 1440 ::
+	mformat -i $(BUILDDIR)/$(OSNAME).img ::
 	mmd -i $(BUILDDIR)/$(OSNAME).img ::/EFI
 	mmd -i $(BUILDDIR)/$(OSNAME).img ::/EFI/BOOT
 	mcopy -i $(BUILDDIR)/$(OSNAME).img $(BOOTEFI) ::/EFI/BOOT
@@ -83,7 +83,7 @@ buildimg:
 
 buildiso:
 	dd if=/dev/zero of=$(BUILDDIR)/$(OSNAME).iso bs=512 count=93750
-	mformat -i $(BUILDDIR)/$(OSNAME).iso -f 1440 ::
+	mformat -i $(BUILDDIR)/$(OSNAME).iso ::
 	mmd -i $(BUILDDIR)/$(OSNAME).iso ::/EFI
 	mmd -i $(BUILDDIR)/$(OSNAME).iso ::/EFI/BOOT
 	mcopy -i $(BUILDDIR)/$(OSNAME).iso $(BOOTEFI) ::/EFI/BOOT
