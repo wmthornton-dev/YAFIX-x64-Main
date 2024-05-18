@@ -37,10 +37,25 @@
 #define YAFSH_LICENSE_INFO "Use is subject to license terms."
 #define YAFSH_VERSION_UNFORMATTED "003"
 
+//YafSH command definitions.
+#define HELP "help"
+#define EXIT "exit"
+#define CLEAR "clear"
+#define LS "ls"
+#define CAT "cat"
+#define CD "cd"
+#define MKDIR "mkdir"
+#define TOUCH "touch"
+#define RM "rm"
+
 class YafSH_Command {
 	public:
 	void YafSH_Input();
     void YafSH_Escape();
+	void YafSH_displayHelp();
+	void YafSH_Exit();
+	void YafSH_Spawn(char* command); // Look into this later. Spawn new command?
+	void YafSH_mkdir(char* command);
 	
 };
 

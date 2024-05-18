@@ -173,3 +173,14 @@ const char* to_string(double value, uint8_t decimalPlaces){
 const char* to_string(double value){
     return to_string(value, 2);
 }
+
+int strcmp(const char* str1, const char* str2) {
+    while (*str1 && (*str1 == *str2)) {
+        str1++;
+        str2++;
+    }
+    return *(const unsigned char*)str1 - *(const unsigned char*)str2;
+}
+
+
+
