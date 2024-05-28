@@ -28,32 +28,32 @@ CFLAGS = -ffreestanding -fshort-wchar -mno-red-zone -fno-exceptions
 ASMFLAGS = 
 LDFLAGS = -T $(LDS) -static -Bsymbolic -nostdlib
 
-SRCDIR := src
+KSRCDIR := src
 OBJDIR := lib
 BUILDDIR = bin
 BOOTEFI := $(GNUEFI)/x86_64/bootloader/main.efi
 
 rwildcard=$(foreach d,$(wildcard $(1:=/*)),$(call rwildcard,$d,$2) $(filter $(subst *,%,$2),$d))
 
-SRC = $(call rwildcard,$(SRCDIR),*.cpp) 
-ASMSRC = $(call rwildcard,$(SRCDIR),*.asm)          
-OBJS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SRC))
-OBJS += $(patsubst $(SRCDIR)/%.asm, $(OBJDIR)/%_asm.o, $(ASMSRC))
-DIRS = $(wildcard $(SRCDIR)/*)
+SRC = $(call rwildcard,$(KSRCDIR),*.cpp) 
+ASMSRC = $(call rwildcard,$(KSRCDIR),*.asm)          
+OBJS = $(patsubst $(KSRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SRC))
+OBJS += $(patsubst $(KSRCDIR)/%.asm, $(OBJDIR)/%_asm.o, $(ASMSRC))
+DIRS = $(wildcard $(KSRCDIR)/*)
 
 kernel: $(OBJS) link
 
-$(OBJDIR)/interrupts/Interrupts.o: $(SRCDIR)/interrupts/Interrupts.cpp
+$(OBJDIR)/interrupts/Interrupts.o: $(KSRCDIR)/interrupts/Interrupts.cpp
 	@echo !==== COMPILING $^
 	@mkdir -p $(@D)
 	$(CC) -mno-red-zone -mgeneral-regs-only -ffreestanding -c $^ -o $@
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.cpp
+$(OBJDIR)/%.o: $(KSRCDIR)/%.cpp
 	@echo !==== COMPILING $^
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) -c $^ -o $@
 
-$(OBJDIR)/%_asm.o: $(SRCDIR)/%.asm
+$(OBJDIR)/%_asm.o: $(KSRCDIR)/%.asm
 	@echo !==== COMPILING $^
 	@mkdir -p $(@D)
 	$(ASMC) $(ASMFLAGS) $^ -f elf64 -o $@
@@ -64,7 +64,7 @@ link:
 
 setup:
 	@mkdir $(BUILDDIR)
-	@mkdir $(SRCDIR)
+	@mkdir $(KSRCDIR)
 	@mkdir $(OBJDIR)
 	
 clean:

@@ -23,7 +23,7 @@
 #include "memory/Heap.h"
 #include "dsyfx/DSYFX.h"
 
-#include "command/YafSH.h"
+#include "uspace/command/YafSH.h"
 
 KernelInfo kernelInfo;
 PageTableManager pageTableManager = NULL; 

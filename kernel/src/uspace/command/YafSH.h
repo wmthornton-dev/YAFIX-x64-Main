@@ -1,20 +1,20 @@
 #pragma once
 
 #include <stdint.h>
-#include "../Basic_Renderer.h"
-#include "../C_String.h"
-#include "../EFI_Memory.h"
-#include "../System_Memory.h"
-#include "../Memory_Bitmap.h"
-#include "../paging/PageFrameAllocator.h"
-#include "../paging/PageMapIndexer.h"
-#include "../paging/Paging.h"
-#include "../paging/PageTableManager.h"
-#include "../userinput/Mouse.h"
-#include "../userinput/Keyboard.h"
-#include "../ACPI.h"
-#include "../PCI.h"
-#include "../scheduling/PIT.h"
+#include "../../Basic_Renderer.h"
+#include "../../C_String.h"
+#include "../../EFI_Memory.h"
+#include "../../System_Memory.h"
+#include "../../Memory_Bitmap.h"
+#include "../../paging/PageFrameAllocator.h"
+#include "../../paging/PageMapIndexer.h"
+#include "../../paging/Paging.h"
+#include "../../paging/PageTableManager.h"
+#include "../../userinput/Mouse.h"
+#include "../../userinput/Keyboard.h"
+#include "../../ACPI.h"
+#include "../..//PCI.h"
+#include "../../scheduling/PIT.h"
 
 // Standard line placement definitions. Decreases typing during coding ops.
 #define YAFSH_CURSOR_SINGLE  GlobalRenderer->Next()
