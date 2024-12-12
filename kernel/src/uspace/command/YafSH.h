@@ -48,6 +48,13 @@
 #define TOUCH "touch"
 #define RM "rm"
 
+//YafSH defaults
+#define DEFAULT_CURSOR_X int Default_Cursor_X = 72    // Default cursor placement when YafSH prompt first loads
+#define DEFAULT_CURSOR_Y int Default_Cursor_Y = 320   // ""
+#define COMMAND char* command[256]
+#define OUTPUT bool output = false
+#define INPUT bool input = false
+
 class YafSH_Command {
 	public:
 	void YafSH_Input();
@@ -60,6 +67,7 @@ class YafSH_Command {
 };
 
 void YafSH_Initialize();
+void YafSH_Reinitialize();
 void YafSH_Prompt();
 
 extern YafSH_Command* Shell_Command;

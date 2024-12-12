@@ -46,6 +46,11 @@ void HandleKeyboard(uint8_t scancode){
             return;
         case BackSpace:
            GlobalRenderer->ClearChar();
+            // Not elegant, but allows enter key to be pressed and new line to be created within the YafSH shell. Bug exists wherein new content
+            // cannot be fully deleted if it started at CursorPostion.X = 0, leaving artifacts.
+            if (GlobalRenderer->CursorPosition.X < 72) {
+                GlobalRenderer->CursorPosition.X = 72; 
+            }
            return;
     }
 

@@ -31,14 +31,18 @@ void YafSH_displayHelp() {
     YAFSH_CURSOR_DOUBLE;
 }
 
-void YafSH_handleCommand(const char* command) {
+void YafSH_handleCommand() {
 
-    // if (strcmp(command, HELP)== 0 || strcmp(command, "-h") == 0)
-    if (strcmp(command, HELP)== 0 || strcmp(command, HELP))
-    {
-        YafSH_displayHelp();
-    }
+    /* DEFAULT_CURSOR_X;
+    DEFAULT_CURSOR_Y;
+    INPUT;
 
+    if ((GlobalRenderer->CursorPosition.X) > (Default_Cursor_X)) {
+        if (!input) {
+            input = true;
+        }
+        GlobalRenderer->Print("TRUE");
+    } */
 }
 
 void YafSH_Initialize() {
@@ -59,17 +63,47 @@ void YafSH_Initialize() {
     
 }
 
+void YafSH_ReInitialize() {
+    YAFSH_CLEAR_SCREEN;
+    YAFSH_CURSOR_DEFAULT;
 
+    GlobalRenderer->Print(YAFSH_VERSION);
+    YAFSH_CURSOR_SINGLE;
+    GlobalRenderer->Print(YAFSH_COPYRIGHT_STRING);
+    YAFSH_CURSOR_SINGLE;
+    GlobalRenderer->Print(YAFSH_DEVELOPER_INFO);
+    YAFSH_CURSOR_SINGLE;
+    GlobalRenderer->Print(YAFSH_LICENSE_INFO);
+    YAFSH_CURSOR_DOUBLE;
+
+    YafSH_displayHelp();
+    YafSH_Prompt();
+    
+}
 
 void YafSH_Prompt() {
     GlobalRenderer->Print("YAFIX #: ");
+   
+    DEFAULT_CURSOR_X;
+    DEFAULT_CURSOR_Y;
+    COMMAND;
+    OUTPUT;
+    INPUT;
 
     while(true) {
-            //char command[256];
-            //char* commandPtr = command;
+
+        if (GlobalRenderer->CursorPosition.Y == Default_Cursor_Y + 16) {
+            if (!output) {
+                output = true;
+            }
+            GlobalRenderer->Print("YAFIX #: ");
+            Default_Cursor_Y = GlobalRenderer->CursorPosition.Y;
+            Default_Cursor_X = GlobalRenderer->CursorPosition.X;
             
-            //YafSH_handleCommand(commandPtr);
-
         }
-
+        if (GlobalRenderer->CursorPosition.Y > 999) { // Need to set this to use targetframebuffer height so it is dynamic, otherwise buggy
+            YafSH_ReInitialize();
+        }
+        YafSH_handleCommand();
+    }
 }
